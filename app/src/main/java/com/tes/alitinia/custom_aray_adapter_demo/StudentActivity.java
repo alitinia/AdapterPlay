@@ -42,6 +42,7 @@ public class StudentActivity extends AppCompatActivity {
                 Intent i = new Intent(StudentActivity.this, AddStudentActivity.class);
                 i.putExtra("student", studentItem); // ini passing object
                 i.putExtra("isEdit", true);
+                i.putExtra("position", position);
                 startActivity(i);
             }
         });
