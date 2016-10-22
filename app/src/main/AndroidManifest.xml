@@ -23,7 +23,7 @@
                 android:value=".MainActivity"/>
         </activity>
 
-        <activity android:name=".AddStudentActivity"
+        <activity android:name=".StudentAddActivity"
             android:parentActivityName=".StudentActivity">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                 android:value=".StudentActivity" />
