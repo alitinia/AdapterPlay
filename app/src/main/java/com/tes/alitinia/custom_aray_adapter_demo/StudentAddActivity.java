@@ -14,7 +14,7 @@ import java.util.ArrayList;
 /**
  * Created by Alitinia on 10/14/2016.
  */
-public class AddStudentActivity extends AppCompatActivity {
+public class StudentAddActivity extends AppCompatActivity {
 
     private EditText edit_id, edit_nim, edit_nama, edit_email, edit_phone; //bisa dipanggil disemua fungsi
     private FloatingActionButton button_Done, button_Cancel;
@@ -45,6 +45,8 @@ public class AddStudentActivity extends AppCompatActivity {
             edit_email.setText(student.getMail());
             edit_phone.setText(student.getPhone());
             position = i.getIntExtra("position", 0);
+        } else {
+            edit_id.setText(String.valueOf(studentList.size()));
         }
 
         button_Done = (FloatingActionButton) findViewById(R.id.button_Done);

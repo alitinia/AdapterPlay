@@ -9,11 +9,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -39,7 +36,7 @@ public class StudentActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Student studentItem = studentList.get(position);
-                Intent i = new Intent(StudentActivity.this, AddStudentActivity.class);
+                Intent i = new Intent(StudentActivity.this, StudentAddActivity.class);
                 i.putExtra("student", studentItem); // ini passing object
                 i.putExtra("isEdit", true);
                 i.putExtra("position", position);
@@ -50,7 +47,7 @@ public class StudentActivity extends AppCompatActivity {
         button_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(StudentActivity.this, AddStudentActivity.class);
+                Intent i = new Intent(StudentActivity.this, StudentAddActivity.class);
                 i.putExtra("isEdit", false);
                 startActivity(i);
             }
@@ -65,17 +62,6 @@ public class StudentActivity extends AppCompatActivity {
         studentList.add(new Student(i+1, "Prastiantari", "3145136209", "prastian@yahoo.com", "081291459285"));
     }
 
-    public void createDummy(){
-        populateStudentDummies();
-        studentArrayAdapter = new StudentArrayAdapter(this, studentList);
-        listView.setAdapter(studentArrayAdapter);
-    }
-
-    public void clearData(){
-        studentList.clear();
-        studentArrayAdapter = new StudentArrayAdapter(this, studentList);
-        listView.setAdapter(studentArrayAdapter);
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -104,14 +90,17 @@ public class StudentActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.create_dummy:
-                createDummy();
-                return true;
+                populateStudentDummies();
+                break;
             case R.id.clear_list:
-                clearData();
-                return true;
+                studentList.clear();
+                break;
             default:
                 return super.onOptionsItemSelected(item);
         }
+        studentArrayAdapter = new StudentArrayAdapter(this, studentList);
+        listView.setAdapter(studentArrayAdapter);
+        return true;
     }
 
 }
